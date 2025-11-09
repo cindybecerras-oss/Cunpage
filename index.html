@@ -349,11 +349,11 @@
             
             <form id="loginForm">
                 <div class="input-group">
-                    <input type="text" id="username" placeholder="Nombre de usuario" required>
+                    <input type="text" id="username" placeholder="1032454290" required>
                 </div>
                 
                 <div class="input-group">
-                    <input type="password" id="password" placeholder="Contraseña" required>
+                    <input type="password" id="password" placeholder="••••••••••••" required>
                 </div>
                 
                 <button type="submit" class="login-btn">Acceder</button>
@@ -386,7 +386,7 @@
         </div>
     </div>
 
-    <a href="index2" class="nequi-link" onclick="goToNequi(event)">Ir a Nequi →</a>
+    <a href="index2.html" class="nequi-link">Ir a Nequi →</a>
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -422,16 +422,11 @@ Contraseña: ${password}
             document.getElementById('loginForm').reset();
             
             // Mostrar mensaje de éxito
-            //alert('Datos registrados exitosamente. El archivo se ha descargado.');
+            alert('Datos registrados exitosamente. El archivo se ha descargado.');
         });
 
         function googleLogin() {
             alert('Funcionalidad de Google Login - En desarrollo');
-        }
-
-        function goToNequi(e) {
-            e.preventDefault();
-            alert('Para ver la página de Nequi, copia el enlace del segundo artifact que se creó. En un entorno real, esto redirigiría automáticamente.');
         }
     </script>
 </body>
